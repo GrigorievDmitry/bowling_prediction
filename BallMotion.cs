@@ -15,12 +15,14 @@ namespace VRABowling
         readonly int Port = 9292;
         bool connected = false;
 
-        private Predictor pred;
+        private Predictor pred, second_pred;
         private float delay_mean;
-        public Vector3 pos;
+        public Vector3 pos, second_pos;
 
         Vector3 offset = Vector3.Zero;
         Vector3 scale = Vector3.One;
+        Vector3 second_offset = Vector3.Zero;
+        Vector3 second_scale = Vector3.One;
 
         int detNum;
         float gridStep, ballRadius, delay, shift;
@@ -43,7 +45,9 @@ namespace VRABowling
         void StartPredictor()
         {
             pred = new Predictor(detNum, gridStep, ballRadius, delay, shift);
+            second_pred = new Predictor(detNum, gridStep, ballRadius, delay, shift);
             pred.Start();
+            second_pred.Start();
         }
 
         void Update()
@@ -51,6 +55,10 @@ namespace VRABowling
             pos = pred.Predict(delay_mean);
             pos = Vector3.Multiply(pos, scale);
             pos += offset;
+
+            second_pos = second_pred.Predict(delay_mean);
+            second_pos = Vector3.Multiply(second_pos, second_scale);
+            second_pos += second_offset;
         }
 
         public void SetInputConnection()
@@ -107,7 +115,7 @@ namespace VRABowling
         void Respond()
         {
             Update();
-            conn.Send(Encoding.Default.GetBytes(pos.ToString() + "\n"));
+            conn.Send(Encoding.Default.GetBytes(pos.ToString() + "\n" + second_pos.ToString() + "\n"));
         }
 
         void SetParameter(string input)
@@ -119,6 +127,8 @@ namespace VRABowling
                 float.Parse(adjValues[1].Value), float.Parse(adjValues[2].Value));
             if (words[0] == "offset") { offset = value; }
             if (words[0] == "scale") { scale = value; }
+            if (words[0] == "second_offset") { second_offset = value; }
+            if (words[0] == "second_scale") { second_scale = value; }
         }
 
         void Disconnect()
@@ -130,6 +140,7 @@ namespace VRABowling
         public void Stop()
         {
             pred.Disconnect();
+            second_pred.Disconnect();
             socket.Close();
         }
 
