@@ -22,6 +22,8 @@ namespace VRABowling
         static readonly float k = (float)(1.0 / Math.Sqrt(2));
         static readonly byte[] sigStart = new byte[] { 1 };
         static readonly byte[] sigStop = new byte[] { 2 };
+        static readonly byte[] resetFirst = new byte[] { 3 };
+        static readonly byte[] resetSecond = new byte[] { 4 };
 
 #if DEBUG
         System.IO.StreamWriter gcf, obtf;
@@ -73,8 +75,14 @@ namespace VRABowling
         {
             float x = sides[1 + 2 * lane].GetCoord(delay);
             float y = sides[0 + 2 * lane].GetCoord(delay);
-           
-            return new Vector3((x - y) * k, 0.2f, (x + y) * k + shift);
+
+            Vector3 pos = new Vector3((x - y) * k, 0.2f, (x + y) * k + shift);
+            if (pos.Z > 1800.0f || Math.Abs(pos.X) > 60.0f)
+                Reset(lane);
+
+
+
+            return pos;
             //return new Vector3((x - y) * k, 300 - (x + y) * k + shift, 0);
         }
 
@@ -92,6 +100,22 @@ namespace VRABowling
             Connected = true;
             Thread socketThread = new Thread(new ThreadStart(ListenToServer));
             socketThread.Start();
+        }
+
+        public void Reset(int lane)
+        {
+            if (lane == 0)
+            {
+                socket.Send(resetFirst);
+                sides[0] = new newSide(detNum, gridStep, ballRadius, 0);
+                sides[1] = new newSide(detNum, gridStep, ballRadius, 1);
+            }
+            else
+            {
+                socket.Send(resetSecond);
+                sides[2] = new newSide(detNum, gridStep, ballRadius, 2);
+                sides[3] = new newSide(detNum, gridStep, ballRadius, 3);
+            }
         }
 
         /// <summary>
@@ -128,6 +152,10 @@ namespace VRABowling
                         var time = BitConverter.ToSingle(row, 8);
                         if (detector < detNum)
                             sides[side].OnBallTracked(detector, time);
+                        else if (detector >= detNum && side < 2)
+                            Reset(0);
+                        else if(detector >= detNum && side >= 2)
+                            Reset(1);
                     }
                     else
                     {
