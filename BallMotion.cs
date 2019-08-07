@@ -12,6 +12,7 @@ namespace VRABowling
     public class BallMotion
     {
         Socket socket, conn;
+        readonly int Port = 9292;
         bool connected = false;
 
         private Predictor pred;
@@ -48,17 +49,14 @@ namespace VRABowling
         void Update()
         {
             pos = pred.Predict(delay_mean);
-
-            pos.X *= scale.X;
-            pos.Y *= scale.Y;
-            pos.Z *= scale.Z;
+            pos = Vector3.Multiply(pos, scale);
             pos += offset;
         }
 
         public void SetInputConnection()
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint addr = new IPEndPoint(IPAddress.Any, 9292);
+            IPEndPoint addr = new IPEndPoint(IPAddress.Any, Port);
             socket.Bind(addr);
             socket.Listen(1);
             conn = socket.Accept();
