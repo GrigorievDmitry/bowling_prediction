@@ -44,10 +44,12 @@ namespace VRABowling
         {
             if (!Connected)
                 Connect();
-            sides = new newSide[2]
+            sides = new newSide[4]
             {
                 new newSide(detNum, gridStep, ballRadius, 0), // left
-                new newSide(detNum, gridStep, ballRadius, 1)  // right
+                new newSide(detNum, gridStep, ballRadius, 1), // right
+                new newSide(detNum, gridStep, ballRadius, 2), // second_left
+                new newSide(detNum, gridStep, ballRadius, 3)  // second_right
             };
 #if DEBUG
             InitLog();
@@ -67,10 +69,10 @@ namespace VRABowling
 
         /// <summary>
         /// Get ball coordiantes.</summary>
-        public Vector3 Predict(float delay)
+        public Vector3 Predict(float delay, int lane)
         {
-            float x = sides[1].GetCoord(delay);
-            float y = sides[0].GetCoord(delay);
+            float x = sides[1 + 2 * lane].GetCoord(delay);
+            float y = sides[0 + 2 * lane].GetCoord(delay);
            
             return new Vector3((x - y) * k, 0.2f, (x + y) * k + shift);
             //return new Vector3((x - y) * k, 300 - (x + y) * k + shift, 0);

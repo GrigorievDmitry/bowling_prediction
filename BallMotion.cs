@@ -17,10 +17,12 @@ namespace VRABowling
 
         private Predictor pred;
         private float delay_mean;
-        public Vector3 pos;
+        public Vector3 pos, second_pos;
 
         Vector3 offset = Vector3.Zero;
         Vector3 scale = Vector3.One;
+        Vector3 second_offset = Vector3.Zero;
+        Vector3 second_scale = Vector3.One;
 
         int detNum;
         float gridStep, ballRadius, delay, shift;
@@ -48,9 +50,13 @@ namespace VRABowling
 
         void Update()
         {
-            pos = pred.Predict(delay_mean);
+            pos = pred.Predict(delay_mean, 0);
             pos = Vector3.Multiply(pos, scale);
             pos += offset;
+
+            second_pos = pred.Predict(delay_mean, 1);
+            second_pos = Vector3.Multiply(second_pos, second_scale);
+            second_pos += second_offset;
         }
 
         public void SetInputConnection()
@@ -119,6 +125,8 @@ namespace VRABowling
                 float.Parse(adjValues[1].Value), float.Parse(adjValues[2].Value));
             if (words[0] == "offset") { offset = value; }
             if (words[0] == "scale") { scale = value; }
+            if (words[0] == "second_offset") { second_offset = value; }
+            if (words[0] == "second_scale") { second_scale = value; }
         }
 
         void Disconnect()
