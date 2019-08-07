@@ -4,3 +4,9 @@ D:\Work\Bowling\Software\Scripts\standalone\BowlingStandalone\bin\Release\Bowlin
 D:\Work\Bowling\Software\Scripts\standalone\BowlingStandalone\obj\Release\BowlingStandalone.csproj.CoreCompileInputs.cache
 D:\Work\Bowling\Software\Scripts\standalone\BowlingStandalone\obj\Release\BowlingStandalone.exe
 D:\Work\Bowling\Software\Scripts\standalone\BowlingStandalone\obj\Release\BowlingStandalone.pdb
+D:\Work\Bowling\Software\BowlingStandalone\bin\Release\BowlingStandalone.exe.config
+D:\Work\Bowling\Software\BowlingStandalone\bin\Release\BowlingStandalone.exe
+D:\Work\Bowling\Software\BowlingStandalone\bin\Release\BowlingStandalone.pdb
+D:\Work\Bowling\Software\BowlingStandalone\obj\Release\BowlingStandalone.csproj.CoreCompileInputs.cache
+D:\Work\Bowling\Software\BowlingStandalone\obj\Release\BowlingStandalone.exe
+D:\Work\Bowling\Software\BowlingStandalone\obj\Release\BowlingStandalone.pdb
