@@ -80,8 +80,6 @@ namespace VRABowling
             if (pos.Z > 1800.0f || Math.Abs(pos.X) > 60.0f)
                 Reset(lane);
 
-
-
             return pos;
             //return new Vector3((x - y) * k, 300 - (x + y) * k + shift, 0);
         }
