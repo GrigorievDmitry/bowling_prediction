@@ -113,7 +113,11 @@ namespace VRABowling
         void Respond()
         {
             Update();
-            conn.Send(Encoding.Default.GetBytes(pos.ToString() + "\n"));
+            MatchCollection coords = Regex.Matches(pos.ToString(), @"\d+?\,?\d*");
+            string response = string.Format("{0} {1}\n",
+                coords[0].Value.Replace(',', '.'),
+                coords[2].Value.Replace(',', '.'));
+            conn.Send(Encoding.Default.GetBytes(response));
         }
 
         void SetParameter(string input)
