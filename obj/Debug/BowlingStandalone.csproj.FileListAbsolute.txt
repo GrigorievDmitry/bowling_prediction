@@ -14,7 +14,6 @@ D:\Work\Bowling\Software\Scripts\standalone\BowlingStandalone\obj\Debug\BowlingS
 D:\Work\Bowling\Software\BowlingStandalone\bin\Debug\BowlingStandalone.exe.config
 D:\Work\Bowling\Software\BowlingStandalone\bin\Debug\BowlingStandalone.exe
 D:\Work\Bowling\Software\BowlingStandalone\bin\Debug\BowlingStandalone.pdb
-D:\Work\Bowling\Software\BowlingStandalone\obj\Debug\BowlingStandalone.csprojAssemblyReference.cache
 D:\Work\Bowling\Software\BowlingStandalone\obj\Debug\BowlingStandalone.csproj.CoreCompileInputs.cache
 D:\Work\Bowling\Software\BowlingStandalone\obj\Debug\BowlingStandalone.exe
 D:\Work\Bowling\Software\BowlingStandalone\obj\Debug\BowlingStandalone.pdb

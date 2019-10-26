@@ -113,7 +113,7 @@ namespace VRABowling
         void Respond()
         {
             Update();
-            MatchCollection coords = Regex.Matches(pos.ToString(), @"\d+?\,?\d*");
+            MatchCollection coords = Regex.Matches(pos.ToString(), @"-?\d+\,?\d*");
             string response = string.Format("{0} {1}\n",
                 coords[0].Value.Replace(',', '.'),
                 coords[2].Value.Replace(',', '.'));
