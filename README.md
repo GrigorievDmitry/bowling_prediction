@@ -1,5 +1,3 @@
-# The access to the main project code could be granted by request. Mail to vintskevich@phystech.edu
-
 # Project development team
 *Main stuff:*
 
