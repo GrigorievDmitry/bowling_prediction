@@ -1,4 +1,4 @@
-# Development team
+# Project development team
 *Main stuff:*
 
 Dr. Stephen V Vintskevich - team leader, chief developer\
