@@ -1,5 +1,5 @@
 # Development team
-*Main stuff:
+* Main stuff:
 
 Dr. Stephen V Vintskevich - team leader, chief developer
 MIPT, vintskevich@phystech.edu
@@ -7,7 +7,7 @@ MIPT, vintskevich@phystech.edu
 Dmitry A Grigoriev - chief developer, chief software developer
 PhD student MIPT, grigorievdmtr@gmail.com
 
-*Secondary stuff:
+* Secondary stuff:
 
 Phillip Khabanov - electronics developer
 PhD student MIPT, khabanov@phystech.edu
