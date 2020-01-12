@@ -23,3 +23,5 @@ Second-year undergraduate  student, Massachusets Institute of Technology, savva@
 Yury Senatorov, yuri.senatorov@gmail.com
 
 Sergey Baranovsky, barsdefy@gmail.com
+
+*By the present day it is non commercial project.*
